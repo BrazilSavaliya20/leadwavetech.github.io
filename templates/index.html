@@ -1,0 +1,1481 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Lead Wave Tech – India's #1 MCA Intelligence Platform</title>
+
+  <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@500;700&family=Roboto:wght@400;700&display=swap"
+    rel="stylesheet" />
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css" />
+  <link rel="stylesheet" href="https://unpkg.com/aos@2.3.4/dist/aos.css" />
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/lottie-web/5.12.0/lottie.min.js"></script>
+
+  <style>
+    :root {
+      --main-color: #00c9ff;
+      --accent-color: #92fe9d;
+      --bg-dark: #0f0f1b;
+      --text-color: #e5e5e5;
+      --card-bg: rgba(30, 30, 47, 0.7);
+      --glass-blur: blur(12px);
+      --section-padding: 3rem 2rem;
+    }
+
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
+
+    html,
+    body {
+      min-width: 100vw;
+      overflow-x: hidden;
+      margin: 0;
+      padding: 0;
+      scroll-behavior: smooth;
+      font-family: 'Roboto', sans-serif;
+      background: var(--bg-dark);
+      color: var(--text-color);
+      line-height: 1.6;
+      max-width: 100vw;
+    }
+
+    h1,
+    h2,
+    h3,
+    h4 {
+      font-family: 'Orbitron', sans-serif;
+      text-transform: uppercase;
+      letter-spacing: 1.5px;
+    }
+
+    .section {
+      max-width: 100vw;
+      width: 100vw;
+      padding: 3rem 1rem;
+      margin-bottom: 2rem;
+    }
+
+    .about-content,
+    .grid {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 2rem;
+      align-items: center;
+      justify-content: center;
+      width: 100%;
+      margin: 0 auto;
+    }
+
+    .about-text,
+    .about-visual {
+      flex: 1 1 45%;
+    }
+
+    .lottie-box {
+      height: 300px;
+      width: 100%;
+      margin: auto;
+    }
+
+    #hero {
+      height: 100vh;
+      background: linear-gradient(to bottom, #04040f, #0f0f1b);
+      position: relative;
+      overflow: hidden;
+      width: 100vw;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      text-align: center;
+      padding: 4rem 1rem 2rem;
+    }
+
+    #hero h1,
+    #hero .typewriter,
+    #hero .cta-button {
+      z-index: 2;
+      position: relative;
+      /* Needed for z-index to work */
+    }
+
+    #hero h1 {
+      font-size: 2.2rem;
+      letter-spacing: 1.5px;
+      text-shadow: 0 0 20px #00c9ff;
+      animation: fadeInUp 1.2s ease-out;
+    }
+
+    #hero .typewriter {
+      margin-top: 0.75rem;
+      font-size: 1.1rem;
+      color: #ccc;
+    }
+
+    #hero::before {
+      content: '';
+      position: absolute;
+      top: -50%;
+      left: -50%;
+      width: 200%;
+      height: 70%;
+      background: radial-gradient(circle, rgba(0, 201, 255, 0.15) 0%, transparent 70%);
+      animation: pulseGlow 8s linear infinite;
+      z-index: 0;
+    }
+
+    @keyframes pulseGlow {
+      0% {
+        transform: scale(1) rotate(0deg);
+      }
+
+      100% {
+        transform: scale(1.05) rotate(360deg);
+      }
+    }
+
+    .logo-text {
+      font-family: 'Orbitron', sans-serif;
+      font-size: 2rem;
+      color: #00c9ff;
+      letter-spacing: 1.5px;
+      text-shadow: none;
+    }
+
+    .bg-video {
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      z-index: 1;
+      pointer-events: none;
+      /* Prevent interaction */
+    }
+
+    .cta-button {
+      background: var(--main-color);
+      color: white;
+      border: none;
+      padding: 0.9rem 2rem;
+      border-radius: 30px;
+      font-size: 1rem;
+      cursor: pointer;
+      margin-top: 2rem;
+      transition: 0.3s;
+      animation: pulse 2s infinite;
+    }
+
+    .cta-button:hover {
+      background: var(--accent-color);
+    }
+
+    @keyframes pulse {
+      0%,
+      100% {
+        transform: scale(1);
+      }
+
+      50% {
+        transform: scale(1.05);
+      }
+    }
+
+    footer {
+      background: #080c15;
+      text-align: center;
+      color: #aaa;
+      padding: 2rem;
+    }
+
+    footer a {
+      color: var(--main-color);
+    }
+
+    /* ====== Navigation Bar ====== */
+    nav {
+      position: fixed;
+      top: 0;
+      right: 2rem;
+      z-index: 1000;
+      display: flex;
+      gap: 1.5rem;
+      background: rgba(15, 15, 27, 0.9);
+      padding: 1rem 2rem;
+      border-radius: 0 0 0 20px;
+      box-shadow: 0 4px 20px rgba(0, 201, 255, 0.1);
+      font-family: 'Orbitron', sans-serif;
+    }
+
+    nav a {
+      color: #e5e5e5;
+      text-decoration: none;
+      font-weight: 500;
+      transition: color 0.3s ease;
+    }
+
+    nav a:hover {
+      color: var(--accent-color);
+    }
+
+    @media (max-width: 768px) {
+      nav {
+        flex-wrap: wrap;
+        justify-content: center;
+        padding: 1rem;
+        gap: 1rem;
+        right: 0;
+        left: 0;
+        border-radius: 0;
+      }
+
+      nav a {
+        font-size: 0.9rem;
+      }
+
+      h1 {
+        font-size: 2.2rem;
+      }
+
+      .about-content,
+      .grid {
+        flex-direction: column;
+        align-items: center;
+      }
+
+      .lottie-box {
+        height: 220px;
+      }
+    }
+  </style>
+</head>
+
+<body>
+
+  <header style="position: absolute; top: 1rem; left: 2rem; z-index: 1001; display: flex; align-items: center; gap: 1rem;">
+    <img src="/static/images/logo.png" alt="Lead Wave Tech Logo" style="height: 120px; margin-top: 10px;">
+    <span class="logo-text" style="text-shadow: none;">LEAD WAVE TECH</span>
+  </header>
+
+<nav>
+  <a href="#hero">Home</a>
+  <a href="#about-comparison">Why Us</a>
+  <a href="#our-services">Services</a>
+  <a href="#pricing">Plans</a>
+  <a href="#contact">Contact</a>
+  <a href="{{ url_for('blog') }}">Daily MCA update</a>
+
+</nav>
+
+
+<!-- Hero Section -->
+<section id="hero">
+  <video autoplay loop muted playsinline preload="auto" class="bg-video">
+    <source src="/static/videos/v7.mp4" type="video/mp4">
+    Your browser does not support the video tag.
+  </video>
+  <div class="hero-content">
+    <h1>
+      <span>THE FUTURE OF MCA DATA INTELLIGENCE</span>
+    </h1>
+    <p class="typewriter">
+      Unlock verified insights. Fuel B2B growth. At scale.
+    </p>
+    <button class="cta-button" onclick="document.getElementById('pricing').scrollIntoView({ behavior: 'smooth' })">
+      Explore Plans
+    </button>
+  </div>
+</section>
+
+
+
+  <style>
+    html,
+    body {
+      max-width: 100vw;
+      overflow-x: hidden;
+      margin: 0;
+      padding: 0;
+    }
+
+    section {
+      max-width: 100vw !important;
+      width: 100vw;
+      padding-left: 1rem;
+      padding-right: 1rem;
+      padding-top: 3rem;
+      padding-bottom: 3rem;
+      margin-bottom: 2rem;
+    }
+
+    .about-content,
+    .grid {
+      max-width: 100%;
+      width: 100%;
+      margin: 0 auto;
+      gap: 2rem;
+    }
+
+    @keyframes fadeInUp {
+      0% {
+        opacity: 0;
+        transform: translateY(30px);
+      }
+
+      100% {
+        opacity: 1;
+        transform: translateY(0);
+      }
+    }
+
+    @keyframes logoPulse {
+      0% {
+        transform: scale(1);
+        filter: drop-shadow(0 0 4px #00c9ff);
+      }
+
+      100% {
+        transform: scale(1.08);
+        filter: drop-shadow(0 0 10px #92fe9d);
+      }
+    }
+
+    #hero {
+      background: linear-gradient(to bottom, #04040f, #0f0f1b);
+      position: relative;
+      overflow: hidden;
+      width: 100vw;
+      max-height: 70vh;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      text-align: center;
+      padding: 4rem 1rem 2rem;
+    }
+
+    #hero h1,
+    #hero .typewriter,
+    #hero .cta-button {
+      z-index: 2;
+      position: relative;
+      /* Needed for z-index to work */
+    }
+
+    #hero h1 {
+      font-size: 2.2rem;
+      letter-spacing: 1.5px;
+      text-shadow: 0 0 20px #00c9ff;
+      animation: fadeInUp 1.2s ease-out;
+    }
+
+    #hero .typewriter {
+      margin-top: 0.75rem;
+      font-size: 1.1rem;
+      color: #ccc;
+    }
+
+    #hero::before {
+      content: '';
+      position: absolute;
+      top: -50%;
+      left: -50%;
+      width: 200%;
+      height: 70%;
+      background: radial-gradient(circle, rgba(0, 201, 255, 0.15) 0%, transparent 70%);
+      animation: pulseGlow 8s linear infinite;
+      z-index: 0;
+    }
+
+    @keyframes pulseGlow {
+      0% {
+        transform: scale(1) rotate(0deg);
+      }
+
+      100% {
+        transform: scale(1.05) rotate(360deg);
+      }
+    }
+
+    .logo-text {
+      font-family: 'Orbitron', sans-serif;
+      font-size: 2rem;
+      color: #00c9ff;
+      letter-spacing: 1.5px;
+      text-shadow: none;
+    }
+
+    .bg-video {
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      z-index: 1;
+      pointer-events: none;
+      /* Prevent interaction */
+    }
+
+    .cta-button {
+      background: var(--main-color);
+      color: white;
+      border: none;
+      padding: 0.9rem 2rem;
+      border-radius: 30px;
+      font-size: 1rem;
+      cursor: pointer;
+      margin-top: 2rem;
+      transition: 0.3s;
+      animation: pulse 2s infinite;
+    }
+
+    .cta-button:hover {
+      background: var(--accent-color);
+    }
+
+    @keyframes pulse {
+      0%,
+      100% {
+        transform: scale(1);
+      }
+
+      50% {
+        transform: scale(1.05);
+      }
+    }
+
+    footer {
+      background: #080c15;
+      text-align: center;
+      color: #aaa;
+      padding: 2rem;
+    }
+
+    footer a {
+      color: var(--main-color);
+    }
+
+    /* ====== Navigation Bar ====== */
+    nav {
+      position: fixed;
+      top: 0;
+      right: 2rem;
+      z-index: 1000;
+      display: flex;
+      gap: 1.5rem;
+      background: rgba(15, 15, 27, 0.9);
+      padding: 1rem 2rem;
+      border-radius: 0 0 0 20px;
+      box-shadow: 0 4px 20px rgba(0, 201, 255, 0.1);
+      font-family: 'Orbitron', sans-serif;
+    }
+
+    nav a {
+      color: #e5e5e5;
+      text-decoration: none;
+      font-weight: 500;
+      transition: color 0.3s ease;
+    }
+
+    nav a:hover {
+      color: var(--accent-color);
+    }
+
+    @media (max-width: 768px) {
+      nav {
+        flex-wrap: wrap;
+        justify-content: center;
+        padding: 1rem;
+        gap: 1rem;
+        right: 0;
+        left: 0;
+        border-radius: 0;
+      }
+
+      nav a {
+        font-size: 0.9rem;
+      }
+
+      h1 {
+        font-size: 2.2rem;
+      }
+
+      .about-content,
+      .grid {
+        flex-direction: column;
+        align-items: center;
+      }
+
+      .lottie-box {
+        height: 220px;
+      }
+    }
+  </style>
+<!-- Section 2: Comparison Section -->
+<section id="about-comparison" class="section" style="background: #0f0f1b; padding: 6rem 1rem;">
+  <div style="max-width: 1100px; margin: auto;">
+    <h3 style="text-align: center; font-size: 2.7rem; background: linear-gradient(to right, #00c9ff, #92fe9d); -webkit-background-clip: text; -webkit-text-fill-color: transparent; margin-bottom: 3rem;">What Sets Us Apart</h3>
+    <div style="display: flex; flex-wrap: wrap; gap: 2rem; justify-content: center;">
+      <div style="flex: 1 1 400px; background: #1c1f2e; border: 1px solid #333; border-radius: 14px; padding: 2rem; box-shadow: 0 0 15px rgba(0,201,255,0.1);">
+        <h4 style="color: #ff4f4f; font-size: 1.5rem; margin-bottom: 1rem;"><i class="fas fa-times-circle"></i> Traditional Providers</h4>
+        <ul style="line-height: 1.8; color: #ccc; font-size: 1rem;">
+          <li>❌ Outdated or incomplete records</li>
+          <li>❌ No filtering by RoC or NIC</li>
+          <li>❌ No verified mobile/email</li>
+          <li>❌ Manual or slow delivery</li>
+        </ul>
+      </div>
+      <div style="flex: 1 1 400px; background: #1a2d3d; border: 1px solid #00c9ff; border-radius: 14px; padding: 2rem; box-shadow: 0 0 20px rgba(0,201,255,0.2);">
+        <h4 style="color: var(--accent-color); font-size: 1.5rem; margin-bottom: 1rem;"><i class="fas fa-check-circle"></i> Lead Wave Tech</h4>
+        <ul style="line-height: 1.8; color: #e5e5e5; font-size: 1rem;">
+          <li>✅ Verified Feb–Mar 2025 MCA data</li>
+          <li>✅ Search by industry, state, RoC</li>
+          <li>✅ Emails & mobile numbers included</li>
+          <li>✅ Delivered digitally in minutes</li>
+        </ul>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- Section 3 + 4 Combined: Who We Serve & Our Mission -->
+<section class="section" style="padding: 5rem 1rem; background: linear-gradient(to bottom, #0f0f1b, #10141e);">
+  <div style="max-width: 1200px; margin: auto; display: grid; grid-template-columns: repeat(auto-fit, minmax(320px, 1fr)); gap: 2rem; align-items: stretch;">
+
+    <!-- Who We Serve -->
+    <div style="background: #121726; border: 1px solid #00c9ff; border-radius: 16px; padding: 2.5rem; box-shadow: 0 0 30px rgba(0,201,255,0.15);">
+      <h3 style="font-size: 2.4rem; text-align: center; color: var(--accent-color); margin-bottom: 1.5rem;">
+        Who We Serve?
+      </h3>
+      <ul style="list-style: none; padding: 0; display: flex; flex-direction: column; gap: 1rem;">
+        <li style="background: rgba(0, 201, 255, 0.07); padding: 1rem 1.25rem; border-radius: 10px; display: flex; align-items: center; color: #e5e5e5;"><i class="fas fa-users" style="margin-right: 0.75rem; color: var(--main-color);"></i> B2B marketers & growth teams</li>
+        <li style="background: rgba(0, 201, 255, 0.07); padding: 1rem 1.25rem; border-radius: 10px; display: flex; align-items: center; color: #e5e5e5;"><i class="fas fa-pencil-ruler" style="margin-right: 0.75rem; color: var(--main-color);"></i> Agencies & freelancers</li>
+        <li style="background: rgba(0, 201, 255, 0.07); padding: 1rem 1.25rem; border-radius: 10px; display: flex; align-items: center; color: #e5e5e5;"><i class="fas fa-rocket" style="margin-right: 0.75rem; color: var(--main-color);"></i> Fintech, SaaS, startup founders</li>
+        <li style="background: rgba(0, 201, 255, 0.07); padding: 1rem 1.25rem; border-radius: 10px; display: flex; align-items: center; color: #e5e5e5;"><i class="fas fa-user-tie" style="margin-right: 0.75rem; color: var(--main-color);"></i> Consultants & advisors</li>
+        <li style="background: rgba(0, 201, 255, 0.07); padding: 1rem 1.25rem; border-radius: 10px; display: flex; align-items: center; color: #e5e5e5;"><i class="fas fa-balance-scale" style="margin-right: 0.75rem; color: var(--main-color);"></i> Legal & compliance professionals</li>
+      </ul>
+    </div>
+
+    <!-- Our Mission -->
+    <div style="background: linear-gradient(145deg, #0a1d29, #122d3a); padding: 3rem 2rem; border-radius: 20px; box-shadow: 0 15px 35px rgba(0,201,255,0.25); color: #ffffff; display: flex; flex-direction: column; justify-content: center; border: 1px solid rgba(0,201,255,0.4);">
+      <h3 style="font-size: 2.6rem; margin-bottom: 1rem; text-align: center; font-weight: 900; color: #00c9ff; text-transform: uppercase; letter-spacing: 1.5px; font-family: 'Orbitron', sans-serif;">Our Mission!</h3>
+      <p style="font-size: 1.2rem; font-style: italic; font-weight: 600; color: #aaffcc; text-align: center; margin-bottom: 2rem;">"Empowering growth through verified data."</p>
+      <p style="font-size: 1.05rem; line-height: 1.8; text-align: justify; color: #e0f7ff;">
+        At Lead Wave Tech, our mission is to make verified business data accessible, actionable, and valuable for every professional who wants to grow faster.<br /><br />
+        We help startups, agencies, and sales teams reach real decision-makers by providing fresh, structured MCA (Ministry of Corporate Affairs) data — including director contacts, emails, and company information.<br /><br />
+        We believe that the right data at the right time can power smarter outreach, better decisions, and faster business growth.
+      </p>
+    </div>
+
+  </div>
+</section>
+
+<!-- Lottie Player -->
+<script src="https://unpkg.com/@lottiefiles/lottie-player@latest/dist/lottie-player.js"></script>
+
+<section id="why-choose-us" class="section" style="padding: 6rem 1rem; background: linear-gradient(to bottom right, #0a0e17, #131d2c);">
+  <div style="max-width: 1200px; margin: auto; display: flex; flex-wrap: wrap; align-items: center; justify-content: space-between; gap: 3rem;">
+
+    <!-- Lottie Animation Left -->
+    <div style="flex: 1 1 450px; display: flex; justify-content: center;">
+      <div style="width: 100%; max-width: 420px; height: 380px;">
+          <!-- Lottie Animation -->
+    <div style="flex: 1 1 350px; max-width: 420px;">
+      <div id="lottie-whychoose" style="width: 100%; height: 320px;"></div>
+    </div>
+      </div>
+    </div>
+
+    <!-- Content Right -->
+    <div style="flex: 1 1 600px; background: rgba(20, 30, 45, 0.95); padding: 2.5rem 2rem; border-radius: 20px; box-shadow: 0 10px 30px rgba(0,201,255,0.2); border: 1px solid rgba(0,201,255,0.2);">
+      <h3 style="font-size: 2.5rem; margin-bottom: 1rem; background: linear-gradient(to right, #00c9ff, #92fe9d); -webkit-background-clip: text; -webkit-text-fill-color: transparent; text-transform: uppercase; letter-spacing: 1.5px;">
+        Why Choose Us?
+      </h3>
+
+      <p style="font-size: 1.2rem; margin-bottom: 1.8rem; color: #d9efff; line-height: 1.75;">
+        We don’t just sell data. We deliver intelligence that helps you connect with real decision-makers faster and more efficiently.
+      </p>
+
+      <ul style="list-style: none; padding: 0; margin: 0; display: flex; flex-direction: column; gap: 1rem; font-size: 1.1rem; color: #c8d6e5;">
+        <li><strong style="color: #00c9ff;">✔️ Fresh & Verified MCA Data:</strong> Feb & Mar 2025 with full director details.</li>
+        <li><strong style="color: #00c9ff;">✔️ CRM-Ready:</strong> Clean format for seamless import into tools.</li>
+        <li><strong style="color: #00c9ff;">✔️ Precision Targeting:</strong> State, city, NIC, RoC, company type filters.</li>
+        <li><strong style="color: #00c9ff;">✔️ Free Sample First:</strong> Try before you buy.</li>
+        <li><strong style="color: #00c9ff;">✔️ Fast Delivery:</strong> Get data in hours via WhatsApp, Telegram, or email.</li>
+        <li><strong style="color: #00c9ff;">✔️ Trusted by 500+ Brands:</strong> Join growing Indian businesses relying on us.</li>
+      </ul>
+    </div>
+  </div>
+</section>
+
+<script>
+  lottie.loadAnimation({
+    container: document.getElementById("lottie-whychoose"),
+    renderer: "svg",
+    loop: true,
+    autoplay: true,
+    path: "/static/animations/anim7.json"
+  });
+</script>
+
+
+<style>
+@keyframes fadeIn {
+  from { opacity: 0; transform: translateY(30px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+@keyframes slideFade {
+  from { opacity: 0; transform: translateY(40px) scale(0.98); }
+  to { opacity: 1; transform: translateY(0) scale(1); }
+}
+</style>
+
+
+
+<!-- Section: Our Services -->
+<section id="our-services" class="section" style="scroll-margin-top: 100px; padding: 6rem 1rem; background: linear-gradient(to bottom right, #0a0e17, #131d2c);">
+    <div style="max-width: 1100px; margin: auto;">
+
+        <h2 style="font-size: 2.7rem;
+                   font-weight: bold;
+                   text-align: center;
+                   margin-bottom: 3rem;
+                   background: linear-gradient(to right, #00c9ff, #92fe9d);
+                   -webkit-background-clip: text;
+                   -webkit-text-fill-color: transparent;
+                   text-transform: uppercase;
+                   letter-spacing: 1.2px;">
+            Our Services
+        </h2>
+
+        <p style="font-size: 1.15rem;
+                  color: #d9efff;
+                  line-height: 1.8;
+                  text-align: center;
+                  margin-bottom: 2.5rem;">
+            Lead Wave Tech delivers powerful MCA data solutions built to fuel lead generation, accelerate business growth,
+            and drive smarter decisions.
+        </p>
+
+        <div style="display: grid;
+                  grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+                  gap: 2.5rem;">
+
+            <div style="background: rgba(20, 30, 45, 0.95);
+                      padding: 1.5rem;
+                      border-radius: 15px;
+                      box-shadow: 0 5px 15px rgba(0,201,255,0.15);">
+                <h3 style="color: #00c9ff;
+                           font-size: 1.4rem;
+                           margin-bottom: 1rem;
+                           display: flex;
+                           align-items: center;">
+                    <i class="fas fa-database" style="margin-right: 0.5rem;"></i>
+                    Verified MCA Data
+                </h3>
+                <div style="display: flex;
+                            flex-direction: column;
+                            gap: 0.75rem;">
+                    <div style="display: flex; align-items: center; color: #ccc;">
+                        <i class="fas fa-phone" style="margin-right: 0.5rem; width: 1.2em; text-align: center;"></i>
+                        Director mobile numbers
+                    </div>
+                    <div style="display: flex; align-items: center; color: #ccc;">
+                        <i class="fas fa-envelope" style="margin-right: 0.5rem; width: 1.2em; text-align: center;"></i>
+                        Verified email IDs
+                    </div>
+                    <div style="display: flex; align-items: center; color: #ccc;">
+                        <i class="fas fa-building" style="margin-right: 0.5rem; width: 1.2em; text-align: center;"></i>
+                        Company details
+                    </div>
+                    <div style="display: flex; align-items: center; color: #ccc;">
+                        <i class="fas fa-user-tie" style="margin-right: 0.5rem; width: 1.2em; text-align: center;"></i>
+                        Director profiles
+                    </div>
+                    <div style="display: flex; align-items: center; color: #ccc;">
+                        <i class="fas fa-file-excel" style="margin-right: 0.5rem; width: 1.2em; text-align: center;"></i>
+                        Excel/CSV delivery
+                    </div>
+                </div>
+                <p style="color: #ddd;
+                          font-size: 0.9rem;
+                          margin-top: 1rem;">
+                    Latest company registrations (Feb & Mar 2025).
+                </p>
+            </div>
+
+            <div style="background: rgba(20, 30, 45, 0.95);
+                      padding: 1.5rem;
+                      border-radius: 15px;
+                      box-shadow: 0 5px 15px rgba(0,201,255,0.15);">
+                <h3 style="color: #00c9ff;
+                           font-size: 1.4rem;
+                           margin-bottom: 1rem;
+                           display: flex;
+                           align-items: center;">
+                    <i class="fas fa-filter" style="margin-right: 0.5rem;"></i>
+                    Customized Filters
+                </h3>
+                <div style="display: flex;
+                            flex-direction: column;
+                            gap: 0.75rem;">
+                    <div style="display: flex; align-items: center; color: #ccc;">
+                        <i class="fas fa-map-marker-alt" style="margin-right: 0.5rem; width: 1.2em; text-align: center;"></i>
+                        State/City/District
+                    </div>
+                    <div style="display: flex; align-items: center; color: #ccc;">
+                        <i class="fas fa-city" style="margin-right: 0.5rem; width: 1.2em; text-align: center;"></i>
+                        Company Type
+                    </div>
+                    <div style="display: flex; align-items: center; color: #ccc;">
+                        <i class="fas fa-industry" style="margin-right: 0.5rem; width: 1.2em; text-align: center;"></i>
+                        Industry/Activity
+                    </div>
+                    <div style="display: flex; align-items: center; color: #ccc;">
+                        <i class="far fa-calendar-alt" style="margin-right: 0.5rem; width: 1.2em; text-align: center;"></i>
+                        Registration Month
+                    </div>
+                    <div style="display: flex; align-items: center; color: #ccc;">
+                        <i class="fas fa-landmark" style="margin-right: 0.5rem; width: 1.2em; text-align: center;"></i>
+                        Registrar of Companies
+                    </div>
+                </div>
+                <p style="color: #ddd;
+                          font-size: 0.9rem;
+                          margin-top: 1rem;">
+                    Find the exact leads you need.
+                </p>
+            </div>
+
+            <div style="background: rgba(20, 30, 45, 0.95);
+                      padding: 1.5rem;
+                      border-radius: 15px;
+                      box-shadow: 0 5px 15px rgba(0,201,255,0.15);">
+                <h3 style="color: #00c9ff;
+                           font-size: 1.4rem;
+                           margin-bottom: 1rem;
+                           display: flex;
+                           align-items: center;">
+                    <i class="fas fa-gift" style="margin-right: 0.5rem;"></i>
+                    Free Sample
+                </h3>
+                <p style="color: #ccc;
+                          line-height: 1.6;
+                          margin-bottom: 1rem;">
+                    Evaluate data quality before purchase.
+                </p>
+                <p style="color: #ddd;
+                          font-size: 0.9rem;">
+                    See what you're getting.
+                </p>
+            </div>
+
+            <div style="background: rgba(20, 30, 45, 0.95);
+                      padding: 1.5rem;
+                      border-radius: 15px;
+                      box-shadow: 0 5px 15px rgba(0,201,255,0.15);">
+                <h3 style="color: #00c9ff;
+                           font-size: 1.4rem;
+                           margin-bottom: 1rem;
+                           display: flex;
+                           align-items: center;">
+                    <i class="fas fa-newspaper" style="margin-right: 0.5rem;"></i>
+                    Daily MCA Reports
+                </h3>
+                <p style="color: #ccc;
+                          line-height: 1.6;
+                          margin-bottom: 1rem;">
+                    Daily insights into new company registrations.
+                    Follow us on <a href="#" style="color: #00c9ff;">Instagram</a> or
+                    <a href="#" style="color: #00c9ff;">WhatsApp</a>.
+                </p>
+                <p style="color: #ddd;
+                          font-size: 0.9rem;">
+                    Stay ahead of market trends.
+                </p>
+            </div>
+
+        </div>
+
+    </div>
+</section>
+
+<style>
+  html {
+    scroll-behavior: smooth;
+  }
+
+  .section {
+    scroll-margin-top: 100px;
+  }
+</style>
+
+
+<!-- 💰 PRICING SECTION -->
+<section class="section" id="pricing" data-aos="fade-up" style="background: linear-gradient(to right, #0f2027, #203a43, #2c5364); padding: 6rem 1rem;">
+  <div style="text-align: center; max-width: 1000px; margin: 0 auto;">
+    <h2 style="font-size: 2.8rem; background: linear-gradient(to right, #00c9ff, #92fe9d); -webkit-background-clip: text; -webkit-text-fill-color: transparent;"><i class="fas fa-tags"></i> Pricing Plans</h2>
+    <h3 style="color: #e0f7ff; font-weight: 400;">Choose the plan that fits your outreach scale</h3>
+  </div>
+
+  <div class="grid" style="display: grid; grid-template-columns: repeat(auto-fit, minmax(270px, 1fr)); gap: 2.5rem; margin-top: 3rem; padding: 0 1rem;">
+
+    <!-- PLAN CARD -->
+    <div class="plan-card glass">
+      <div class="plan-icon"><i class="fas fa-rocket"></i></div>
+      <h4>Free Starter</h4>
+      <ul>
+        <li>Grab Your Free Data sample today</li>
+        <li>Basic contact & CIN info</li>
+        <li>CSV or Excel delivery</li>
+      </ul>
+      <p class="price">₹0 <span>/ forever</span></p>
+      <button class="scroll-to-contact">Get Started Free</button>
+    </div>
+
+    <!-- PLAN CARD -->
+    <div class="plan-card glass highlight">
+      <div class="plan-icon"><i class="fas fa-map-marker-alt"></i></div>
+      <h4>Regional Reach</h4>
+      <ul>
+        <li>1,000–5,000 leads</li>
+        <li>State/district filters</li>
+        <li>Verified directors & emails</li>
+      </ul>
+      <p class="price">₹999/-</p>
+      <button class="scroll-to-contact">Choose Region</button>
+    </div>
+
+    <!-- PLAN CARD -->
+    <div class="plan-card glass">
+      <div class="plan-icon"><i class="fas fa-globe"></i></div>
+      <h4>PAN India Power</h4>
+      <ul>
+        <li>70,000+ MCA records</li>
+        <li>All states & industries</li>
+        <li>Filter by NIC code, City, etc.</li>
+      </ul>
+      <p class="price">₹1,999/-</p>
+      <button class="scroll-to-contact">View Full Dataset</button>
+    </div>
+
+
+  </div>
+</section>
+
+<!-- 🧾 Pricing Card Styles -->
+<style>
+  .plan-card {
+    background: rgba(255, 255, 255, 0.05);
+    border: 1px solid rgba(0, 201, 255, 0.15);
+    border-radius: 20px;
+    padding: 2rem 1.5rem;
+    box-shadow: 0 0 20px rgba(0, 201, 255, 0.05);
+    text-align: center;
+    backdrop-filter: blur(14px);
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+  }
+
+  .plan-card:hover {
+    transform: translateY(-8px);
+    box-shadow: 0 0 30px rgba(0, 201, 255, 0.25);
+  }
+
+  .plan-card h4 {
+    font-size: 1.4rem;
+    margin-bottom: 1rem;
+    color: #00c9ff;
+  }
+
+  .plan-icon {
+    font-size: 2.2rem;
+    color: #92fe9d;
+    margin-bottom: 1rem;
+  }
+
+  .plan-card ul {
+    list-style: none;
+    padding: 0;
+    margin: 1rem 0;
+    line-height: 1.8;
+    color: #d8f9ff;
+  }
+
+  .plan-card ul li::before {
+    content: '✔ ';
+    color: var(--accent-color);
+  }
+
+  .price {
+    font-size: 1.5rem;
+    font-weight: bold;
+    color: var(--main-color);
+    margin: 1rem 0;
+  }
+
+  .price span {
+    font-size: 0.9rem;
+    color: #aaa;
+  }
+
+  .plan-card button {
+    background: linear-gradient(to right, #00c9ff, #92fe9d);
+    border: none;
+    padding: 0.7rem 1.5rem;
+    border-radius: 25px;
+    font-weight: bold;
+    cursor: pointer;
+    color: #000;
+    font-size: 1rem;
+    transition: 0.3s ease;
+  }
+
+  .plan-card button:hover {
+    opacity: 0.85;
+  }
+
+  .highlight {
+    border: 1px solid #00c9ff;
+    box-shadow: 0 0 30px rgba(0, 201, 255, 0.2);
+  }
+</style>
+
+<!-- ✨ Smooth Scroll Script -->
+<script>
+  document.querySelectorAll('.scroll-to-contact').forEach(button => {
+    button.addEventListener('click', () => {
+      document.getElementById('contact').scrollIntoView({ behavior: 'smooth' });
+    });
+  });
+</script>
+
+
+<section class="section" id="testimonials" style="background: linear-gradient(to bottom right, #0e131a, #1c2530); padding: 5rem 2rem;">
+  <div style="text-align: center; margin-bottom: 3rem;">
+    <h2 style="font-size: 2.5rem; background: linear-gradient(to right, #00c9ff, #92fe9d); -webkit-background-clip: text; -webkit-text-fill-color: transparent;">What Our Clients Say</h2>
+    <p style="color: #d0eaff; font-size: 1.1rem;">Real experiences from businesses that grew with Lead Wave Tech</p>
+  </div>
+
+  <div class="testimonial-grid" style="display: grid; grid-template-columns: repeat(auto-fit, minmax(320px, 1fr)); gap: 2.5rem; max-width: 1100px; margin: auto;">
+    <!-- Testimonial 1 - Video -->
+    <div class="testimonial-card">
+      <div class="video-container">
+        <video muted disablepictureinpicture controlslist="nodownload nofullscreen noremoteplayback" onclick="openVideoPopup('/static/videos/video1.mp4')">
+          <source src="/static/videos/video1.mp4" type="video/mp4">
+          Your browser does not support the video tag.
+        </video>
+      </div>
+      <div class="client-details">
+        <h3>BizneX - Digital Marketing Agency (Mumbai)</h3>
+        <h4><strong>Headline:</strong> BizneX Achieves 8 Client Wins in 1 Week with Lead Wave Tech</h4>
+        <p><strong>Brief Intro:</strong> Hear how BizneX, a leading digital marketing agency in Mumbai, transformed their lead generation process.</p>
+        <blockquote>"In just one week, we closed eight new deals... Lead Wave Tech has become essential for our sales."</blockquote>
+        <p><strong>Summary:</strong> BizneX struggled to find qualified leads for their website development and digital marketing services. They were spending excessive time on unproductive outreach. Lead Wave Tech's targeted data enabled them to connect with relevant decision-makers, resulting in eight new client acquisitions within a single week. This dramatic increase in efficiency significantly boosted their revenue and accelerated their growth.</p>
+        <p><strong>Call to Action:</strong> Want similar results for your agency? Contact us to learn more.</p>
+        <p><strong>Client:</strong>Mr. Suresh Tripathi, Founder, BizneX</p>
+      </div>
+    </div>
+
+    <!-- Testimonial 2 - Video -->
+    <div class="testimonial-card">
+      <div class="video-container">
+        <video muted disablepictureinpicture controlslist="nodownload nofullscreen noremoteplayback" onclick="openVideoPopup('/static/videos/video3.mp4')">
+          <source src="/static/videos/video3.mp4" type="video/mp4">
+          Your browser does not support the video tag.
+        </video>
+      </div>
+
+      <div class="client-details">
+        <h3>Yelkotech</h3>
+        <h4><strong>Headline:</strong> Yelkotech Secures 10 Projects in 2 Weeks Using Lead Wave Tech</h4>
+        <p><strong>Brief Intro:</strong> Discover how Yelkotech, a company specializing in both website development and digital marketing, expanded their project pipeline.</p>
+        <blockquote>"Within two weeks... we secured ten new projects! This influx of business has been crucial for our growth."</blockquote>
+        <p><strong>Summary:</strong> Yelkotech faced the challenge of consistently generating leads for their dual service offerings. Lead Wave Tech's data provided them with the ability to identify businesses with specific needs in website development and digital marketing. By targeting their outreach, Yelkotech secured ten new projects in just two weeks, demonstrating a significant improvement in their lead generation and business growth.</p>
+        <p><strong>Call to Action:</strong> See how targeted data can fuel your business growth. Request a demo.</p>
+        <p><strong>Client:</strong>Mr. Pradip, Founder, Yelkotech</p>
+      </div>
+    </div>
+
+    <!-- Testimonial 3 - Video -->
+    <div class="testimonial-card">
+      <div class="video-container">
+        <video muted disablepictureinpicture controlslist="nodownload nofullscreen noremoteplayback" onclick="openVideoPopup('/static/videos/video2.mp4')">
+          <source src="/static/videos/video2.mp4" type="video/mp4">
+          Your browser does not support the video tag.
+        </video>
+      </div>
+      <div class="client-details">
+        <h3>Prestancia Technologies Pvt Ltd</h3>
+        <h4><strong>Headline:</strong> Prestancia Technologies Gains 15 New Projects in One Month</h4>
+        <p><strong>Brief Intro:</strong> Learn how Prestancia Technologies, a technology solutions provider, achieved rapid growth by leveraging Lead Wave Tech's data.</p>
+        <blockquote>"In just one month, we acquired fifteen new projects directly attributed to Lead Wave Tech's data."</blockquote>
+        <p><strong>Summary:</strong> Prestancia Technologies needed a reliable source of leads to sustain their project pipeline. Lead Wave Tech's comprehensive MCA data allowed them to pinpoint and connect with potential clients seeking their technology solutions. As a result, Prestancia Technologies acquired fifteen new projects within a month, leading to increased revenue and a stronger foundation for future expansion.</p>
+        <p><strong>Call to Action:</strong> Ready to unlock your growth potential? Explore our data solutions.</p>
+        <p><strong>Client:</strong>Mr. Siddarth, CEO, Prestancia Technologies Pvt Ltd</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- Video Modal Popup -->
+<div id="videoModal" class="video-modal">
+  <div class="video-modal-content">
+    <span class="video-modal-close" onclick="closeVideoPopup()">&times;</span>
+    <video id="popupVideo" controls autoplay></video>
+  </div>
+</div>
+
+<style>
+  .testimonial-card {
+    background: rgba(255, 255, 255, 0.04);
+    padding: 2rem;
+    border-radius: 16px;
+    backdrop-filter: blur(10px);
+    border: 1px solid rgba(0,201,255,0.1);
+    box-shadow: 0 0 15px rgba(0,201,255,0.05);
+    color: #dff;
+  }
+
+  .testimonial-text {
+    font-size: 1.05rem;
+    line-height: 1.7;
+    color: #e0f7ff;
+    margin-bottom: 1rem;
+  }
+
+  .testimonial-card h4 {
+    font-size: 1rem;
+    color: #92fe9d;
+    font-weight: normal;
+  }
+
+  .client-details {
+    margin-top: 1.5rem;
+    font-size: 0.95rem;
+    color: #ccf;
+    background-color: rgba(0, 201, 255, 0.07);
+    padding: 1rem;
+    border-left: 4px solid #00c9ff;
+    border-radius: 12px;
+  }
+
+  .client-details h3 {
+    color: #00c9ff;
+    font-size: 1.3rem;
+    margin-bottom: 0.5rem;
+  }
+
+  .client-details blockquote {
+    font-style: italic;
+    margin: 0.5rem 0 1rem;
+    padding-left: 1rem;
+    border-left: 3px solid #92fe9d;
+    color: #92fe9d;
+  }
+
+  .client-details p strong {
+    color: #92fe9d;
+  }
+
+  .video-container {
+    position: relative;
+    padding-bottom: 56.25%;
+    height: 0;
+    overflow: hidden;
+    border-radius: 12px;
+    margin-bottom: 1rem;
+  }
+
+  .video-container video {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    border: none;
+    border-radius: 12px;
+    object-fit: cover;
+    cursor: pointer;
+  }
+
+  @media (max-width: 768px) {
+    .testimonial-text {
+      font-size: 0.95rem;
+    }
+
+    .testimonial-card h4 {
+      font-size: 0.9rem;
+    }
+  }
+
+  .video-modal {
+    display: none;
+    position: fixed;
+    z-index: 9999;
+    left: 0;
+    top: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0,0,0,0.9);
+    align-items: center;
+    justify-content: center;
+  }
+
+  .video-modal-content {
+    position: relative;
+    width: 90%;
+    max-width: 900px;
+  }
+
+  .video-modal-content video {
+    width: 100%;
+    height: auto;
+    border-radius: 8px;
+  }
+
+  .video-modal-close {
+    position: absolute;
+    top: -20px;
+    right: 0;
+    color: #fff;
+    font-size: 2rem;
+    cursor: pointer;
+    padding: 1rem;
+  }
+</style>
+
+<script>
+  function openVideoPopup(src) {
+    const modal = document.getElementById('videoModal');
+    const video = document.getElementById('popupVideo');
+    video.src = src;
+    modal.style.display = 'flex';
+    video.play();
+  }
+
+  function closeVideoPopup() {
+    const modal = document.getElementById('videoModal');
+    const video = document.getElementById('popupVideo');
+    video.pause();
+    video.currentTime = 0;
+    modal.style.display = 'none';
+  }
+
+  window.onclick = function(event) {
+    const modal = document.getElementById('videoModal');
+    if (event.target === modal) {
+      closeVideoPopup();
+    }
+  };
+</script>
+
+
+
+<!-- Lottie Player -->
+<script src="https://unpkg.com/@lottiefiles/lottie-player@latest/dist/lottie-player.js"></script>
+
+<section id="contact" class="form-section" style="scroll-margin-top: 100px;">
+  <div class="about-content" style="display: flex; flex-direction: row; align-items: center; gap: 4rem; flex-wrap: wrap; justify-content: center; padding: 2rem 1rem; max-width: 1200px; margin: 0 auto;">
+
+    <!-- 🔁 Moved Lottie to Left -->
+    <div class="about-visual" style="flex: 1 1 450px; max-width: 500px; display: flex; justify-content: center; align-items: center;">
+      <div class="lottie-box" style="width: 100%; height: 400px;">
+        <lottie-player
+          src="{{ url_for('static', filename='animations/anim6.json') }}"
+          background="transparent"
+          speed="1"
+          loop
+          autoplay
+          style="width: 100%; height: 100%; display: block;">
+        </lottie-player>
+      </div>
+    </div>
+
+    <!-- ✅ Form on Right -->
+    <div class="form-wrapper" style="flex: 1 1 450px; max-width: 600px; background: rgba(255,255,255,0.05); padding: 2rem; border-radius: 16px; box-shadow: 0 0 25px rgba(0, 201, 255, 0.2);">
+      <h2 style="text-align: center; color: white;"><i class="fas fa-envelope"></i> Let’s Talk</h2>
+
+      <form action="{{ url_for('contact') }}" method="POST" style="display: flex; flex-direction: column; gap: 1rem;">
+  <input type="text" name="name" placeholder="Your Name*" required style="padding: 0.9rem; border-radius: 10px; border: 1px solid #00c9ff; background: rgba(255, 255, 255, 0.07); color: white; font-size: 1rem; width: 100%;" />
+  <input type="tel" name="phone" placeholder="Contact Number*" required style="padding: 0.9rem; border-radius: 10px; border: 1px solid #00c9ff; background: rgba(255, 255, 255, 0.07); color: white; font-size: 1rem; width: 100%;" />
+  <input type="email" name="email" placeholder="Email Address*" required style="padding: 0.9rem; border-radius: 10px; border: 1px solid #00c9ff; background: rgba(255, 255, 255, 0.07); color: white; font-size: 1rem; width: 100%;" />
+  <input type="text" name="location" placeholder="Location*" required style="padding: 0.9rem; border-radius: 10px; border: 1px solid #00c9ff; background: rgba(255, 255, 255, 0.07); color: white; font-size: 1rem; width: 100%;" />
+  <textarea name="message" placeholder="Your Message*" required style="padding: 0.9rem; height: 150px; resize: none; border-radius: 10px; border: 1px solid #00c9ff; background: rgba(255, 255, 255, 0.07); color: white; font-size: 1rem; width: 100%;"></textarea>
+  <button type="submit" style="padding: 0.9rem 2rem; background: linear-gradient(to right, #00c9ff, #92fe9d); border: none; color: #000; font-weight: bold; border-radius: 30px; cursor: pointer; font-size: 1rem; transition: 0.3s; box-shadow: 0 0 10px rgba(0, 201, 255, 0.4);">
+    Send Message
+  </button>
+</form>
+
+      <div style="margin-top: 2rem; background: rgba(255,255,255,0.03); border-radius: 12px; padding: 1rem 1.5rem;">
+<p style="margin: 0.5rem 0; font-size: 1rem; color: #aee3f7;">
+  <i class="fas fa-envelope" style="margin-right: 0.5rem;"></i>
+  <a href="mailto:info@leadwavetech.com" style="color: #aee3f7; text-decoration: underline;">info@leadwavetech.com</a>
+</p>
+<p style="margin: 0.5rem 0; font-size: 1rem; color: #aee3f7;">
+  <i class="fab fa-instagram" style="margin-right: 0.5rem;"></i>
+  <a href="https://www.instagram.com/leadwave.info?igsh=MTIyOXZkeHFua21pbw==" target="_blank" style="color: #aee3f7; text-decoration: underline;">@leadwave.info</a>
+</p>
+<p style="margin: 0.5rem 0; font-size: 1rem; color: #aee3f7;">
+  <i class="fab fa-whatsapp" style="margin-right: 0.5rem;"></i>
+<a href="https://wa.me/918733883960?text=Should%20I%20know%20more%20about%20this%3F" target="_blank" style="color: #aee3f7; text-decoration: underline;">WhatsApp Chat</a>
+</p>
+
+
+    <p style="margin: 0.5rem 0; font-size: 1rem; color: #aee3f7;"><i class="fas fa-globe" style="margin-right: 0.5rem;"></i>Serving all of India remotely</p>
+      </div>
+    </div>
+  </div>
+</section>
+<style>
+  @media (max-width: 768px) {
+    #contact .about-content {
+      flex-direction: column !important;
+      align-items: center !important;
+    }
+
+    #contact .form-wrapper,
+    #contact .about-visual {
+      max-width: 100% !important;
+    }
+  }
+</style>
+
+
+<!-- Responsive CSS -->
+<style>
+  @media (max-width: 768px) {
+    #contact .about-content {
+      flex-direction: column !important;
+      align-items: center !important;
+    }
+
+    #contact .form-wrapper,
+    #contact .about-visual {
+      max-width: 100% !important;
+    }
+  }
+</style>
+
+
+
+
+
+
+
+
+
+<footer>
+  <p>&copy; 2025 Lead Wave Tech • <a href="#" onclick="showPrivacyPolicy(event)">Privacy Policy</a> • <a href="#" onclick="showTerms(event)">Terms</a></p>
+</footer>
+
+<!-- Overlay Background -->
+<div id="modalOverlay" class="modal-overlay" onclick="closeAllModals()"></div>
+
+<!-- Privacy Policy Modal -->
+<div id="privacyModal" class="modal-backdrop">
+  <div class="modal-glass" onclick="event.stopPropagation()">
+    <div class="modal-header">
+      <h2>Privacy Policy</h2>
+    </div>
+    <div class="modal-scroll">
+      <details open><summary><strong>1. Information We Collect</strong></summary>
+        <ul>
+          <li>1.1 Personal Info: Name, Email, Phone, Company, Address, Payment info</li>
+          <li>1.2 MCA Data: CIN, DIN, Company & Director details</li>
+          <li>1.3 Usage Data: IP, browser, device, activity, cookies</li>
+        </ul>
+      </details>
+      <details><summary><strong>2. How We Use Your Information</strong></summary>
+        <ul>
+          <li>To provide and maintain services</li>
+          <li>For communication, personalization, analysis</li>
+          <li>Marketing (with consent)</li>
+        </ul>
+      </details>
+      <details><summary><strong>3. Disclosure of Your Information</strong></summary>
+        <ul>
+          <li>To service providers</li>
+          <li>To legal authorities</li>
+          <li>With user consent</li>
+        </ul>
+      </details>
+      <details><summary><strong>4. Cookies and Tracking</strong></summary>
+        <p>We use cookies to enhance user experience. You can manage cookies via your browser settings.</p>
+      </details>
+      <details><summary><strong>5. Data Security</strong></summary>
+        <p>We implement encryption, monitoring, and access control to protect your data.</p>
+      </details>
+      <details><summary><strong>6. Data Retention</strong></summary>
+        <p>Your data is retained only as long as necessary or legally required.</p>
+      </details>
+      <details><summary><strong>7. Your Rights</strong></summary>
+        <ul>
+          <li>Access</li>
+          <li>Correction</li>
+          <li>Deletion</li>
+          <li>Objection to processing</li>
+        </ul>
+      </details>
+      <details><summary><strong>8. Third-Party Links</strong></summary>
+        <p>We are not responsible for the privacy practices of external websites linked from ours.</p>
+      </details>
+      <details><summary><strong>9. Contact Us</strong></summary>
+        <p>Email: info@leadwavetech.com<br> Address: Ahmedabad, Gujarat.</p>
+      </details>
+      <details><summary><strong>10. Changes to This Policy</strong></summary>
+        <p>We may update this policy at any time. All changes will be posted on this page.</p>
+      </details>
+    </div>
+  </div>
+</div>
+
+<!-- Terms and Conditions Modal -->
+<div id="termsModal" class="modal-backdrop">
+  <div class="modal-glass" onclick="event.stopPropagation()">
+    <div class="modal-header">
+      <h2>Terms and Conditions</h2>
+    </div>
+    <div class="modal-scroll">
+      <details open><summary><strong>1. Acceptance of Terms</strong></summary>
+      <ul>
+        <li>1.1 You agree to these Terms and any revisions by using our site/services.</li>
+        <li>1.2 If you disagree, do not use our services.</li>
+      </ul>
+    </details>
+    <details><summary><strong>2. Use of Services</strong></summary>
+      <ul>
+        <li>2.1 You may access MCA data through our platform.</li>
+        <li>2.2 You agree to use services lawfully.</li>
+        <li>2.3 You shall not:
+          <ul>
+            <li>Use our data illegally or harmfully</li>
+            <li>Violate IP rights</li>
+            <li>Inject malware or interfere with systems</li>
+          </ul>
+        </li>
+      </ul>
+    </details>
+    <details><summary><strong>3. Intellectual Property</strong></summary>
+      <ul>
+        <li>3.1 Our content is protected by IP laws.</li>
+        <li>3.2 You're granted limited, non-transferable usage rights.</li>
+        <li>3.3 Do not copy, reverse engineer, or distribute our content/software.</li>
+      </ul>
+    </details>
+    <details><summary><strong>4. Data Accuracy and Disclaimer</strong></summary>
+      <ul>
+        <li>4.1 We aim for accurate MCA data but offer no guarantees.</li>
+        <li>4.2 Use is at your own risk.</li>
+        <li>4.3 Services are "as is" without warranties.</li>
+      </ul>
+    </details>
+    <details><summary><strong>5. Payment and Subscription</strong></summary>
+      <ul>
+        <li>5.1 You agree to pay all applicable subscription fees.</li>
+        <li>5.2 Fees are billed monthly/yearly.</li>
+        <li>5.3 Cancellations are subject to policy (e.g., no partial refunds).</li>
+      </ul>
+    </details>
+    <details><summary><strong>6. User Accounts</strong></summary>
+      <ul>
+        <li>6.1 You’re responsible for your login credentials.</li>
+        <li>6.2 Notify us of breaches.</li>
+        <li>6.3 We can suspend accounts on misuse.</li>
+      </ul>
+    </details>
+    <details><summary><strong>7. Limitation of Liability</strong></summary>
+      <p>We’re not liable for indirect losses, data breaches, service disruptions, or user misuse.</p>
+    </details>
+    <details><summary><strong>8. Indemnification</strong></summary>
+      <p>You agree to indemnify Lead Wave Tech for any damages due to violations of these terms.</p>
+    </details>
+    <details><summary><strong>9. Governing Law</strong></summary>
+      <p>These Terms are governed by Indian laws and handled in Indian courts.</p>
+    </details>
+    <details><summary><strong>10. Changes to These Terms</strong></summary>
+      <p>We may update these Terms anytime. Continued use indicates acceptance.</p>
+    </details>
+    <details><summary><strong>11. Contact Us</strong></summary>
+      <p>Email: info@leadwavetech.com <br> Address: Ahmedabad, Gujarat.</p
+    </div>
+  </div>
+</div>
+
+<style>
+.modal-overlay {
+  position: fixed;
+  display: none;
+  top: 0;
+  left: 0;
+  width: 100vw;
+  height: 100vh;
+  background: rgba(0, 0, 0, 0.65);
+  z-index: 9998;
+}
+.modal-backdrop {
+  display: none;
+  opacity: 0;
+  position: fixed;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%) scale(0.95);
+  transition: opacity 0.3s ease, transform 0.3s ease;
+  max-height: 90vh;
+  overflow-y: auto;
+  z-index: 9999;
+}
+.modal-backdrop.show {
+  display: block;
+  opacity: 1;
+  transform: translate(-50%, -50%) scale(1);
+}
+</style>
+
+<script>
+function showPrivacyPolicy(event) {
+  event.preventDefault();
+  document.getElementById('privacyModal').classList.add('show');
+  document.getElementById('termsModal').classList.remove('show');
+  document.getElementById('modalOverlay').style.display = 'block';
+}
+function closePrivacyPolicy() {
+  document.getElementById('privacyModal').classList.remove('show');
+  document.getElementById('modalOverlay').style.display = 'none';
+}
+function showTerms(event) {
+  event.preventDefault();
+  document.getElementById('termsModal').classList.add('show');
+  document.getElementById('privacyModal').classList.remove('show');
+  document.getElementById('modalOverlay').style.display = 'block';
+}
+function closeTerms() {
+  document.getElementById('termsModal').classList.remove('show');
+  document.getElementById('modalOverlay').style.display = 'none';
+}
+function closeAllModals() {
+  closePrivacyPolicy();
+  closeTerms();
+}
+</script>
+
+
+
+
+<!-- Scripts -->
+<script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r134/three.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/vanta@latest/dist/vanta.waves.min.js"></script>
+<script src="https://unpkg.com/aos@2.3.4/dist/aos.js"></script>
+<script>
+  AOS.init({ duration: 1000, easing: "ease-in-out", once: true });
+  lottie.loadAnimation({ container: document.getElementById("anim1"), renderer: "svg", loop: true, autoplay: true, path: "/static/animations/anim1.json" });
+  lottie.loadAnimation({ container: document.getElementById("anim2"), renderer: "svg", loop: true, autoplay: true, path: "/static/animations/anim2.json" });
+  lottie.loadAnimation({ container: document.getElementById("anim6"), renderer: "svg", loop: true, autoplay: true, path: "/static/animations/anim6.json" });
+  lottie.loadAnimation({ container: document.getElementById("anim7"), renderer: "svg", loop: true, autoplay: true, path: "/static/animations/anim7.json" });
+
+</script>
+</body>
+</html>
