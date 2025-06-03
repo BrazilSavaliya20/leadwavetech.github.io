@@ -1,49 +1,40 @@
 from flask import Flask, render_template, request, redirect, url_for, flash
-import pymysql
 import os
 import json
 from dotenv import load_dotenv
+import firebase_admin
+from firebase_admin import credentials, db
+
 load_dotenv()
-from waitress import serve
 
 app = Flask(__name__, static_folder='static', template_folder='templates')
 app.secret_key = os.getenv('SECRET_KEY', 'supersecretkey')
-serve(app, port=8080)
 
-def get_db_connection():
-    return pymysql.connect(
-        host=os.getenv('DB_HOST', 'localhost'),
-        user=os.getenv('DB_USER', 'root'),
-        password=os.getenv('DB_PASS', '87338@Brazil'),
-        database=os.getenv('DB_NAME', 'lead_wave_db'),
-        cursorclass=pymysql.cursors.DictCursor
-    )
+# ✅ Firebase Initialization
+cred = credentials.Certificate("firebase_key.json")  # Ensure this file exists
+firebase_admin.initialize_app(cred, {
+    'databaseURL': os.getenv("FIREBASE_DB_URL", "https://lead-wave-8f858-default-rtdb.firebaseio.com/")
+})
+
 
 @app.route("/")
 def home():
     return render_template("index.html")
 
+
 @app.route("/blog")
 def blog():
     try:
-        import os, json
-        from flask import current_app as app
-
-        # Dynamically force path to this notebook environment
-        json_path = os.path.join(os.getcwd(), 'data', 'blogs.json') 
-        app.logger.info(f"📁 Reading from: {json_path}")
-
-        with open(json_path, "r", encoding="utf-8") as f:
+        path = os.path.join(os.getcwd(), 'data', 'blogs.json')
+        with open(path, "r", encoding="utf-8") as f:
             posts = json.load(f)
-        app.logger.info(f"✅ Found {len(posts)} post(s).")
     except Exception as e:
         app.logger.error(f"❌ Blog load error: {e}")
         posts = []
 
-    return render_template("blog.html", posts=posts)
-
-
-
+    # Optional: Only show post count to admin
+    is_admin = request.args.get("key") == os.getenv("ADMIN_KEY", "mysecret")
+    return render_template("blog.html", posts=posts, is_admin=is_admin)
 
 
 @app.route("/admin/upload-blog", methods=["GET", "POST"])
@@ -70,13 +61,14 @@ def upload_blog():
                 json.dump(blogs, file, indent=2)
                 file.truncate()
             flash("✅ Blog uploaded successfully!", "success")
-            return redirect(url_for("blog"))
+            return redirect(url_for("blog", key=secret))
         except Exception as e:
             app.logger.error(f"Blog upload failed: {e}")
             flash("❌ Error uploading blog.", "error")
             return redirect(url_for("upload_blog", key=secret))
 
     return render_template("blog_upload.html")
+
 
 @app.route("/admin/delete-blog/<slug>")
 def delete_blog(slug):
@@ -115,21 +107,21 @@ def contact():
         return redirect(url_for("home"))
 
     try:
-        conn = get_db_connection()
-        with conn.cursor() as cursor:
-            cursor.execute("""
-                INSERT INTO contacts (name, phone, email, location, message)
-                VALUES (%s, %s, %s, %s, %s)
-            """, (name, phone, email, location, message))
-            conn.commit()
+        ref = db.reference("/contacts")
+        ref.push({
+            "name": name,
+            "email": email,
+            "phone": phone,
+            "location": location,
+            "message": message
+        })
         flash("✅ Message submitted successfully!", "success")
     except Exception as e:
         flash("❌ There was an error saving your message.", "error")
-        app.logger.error(f"Database Error: {e}")
-    finally:
-        conn.close()
+        app.logger.error(f"Firebase Error: {e}")
 
     return redirect(url_for("home"))
+
 
 @app.route("/sample", methods=["POST"])
 def sample():
@@ -140,8 +132,17 @@ def sample():
         flash("❗ Please fill in all sample request fields.", "error")
         return redirect(url_for("home"))
 
-    app.logger.info(f"🎁 Sample requested: {firstname}, {email}")
-    flash("✅ Sample request submitted!", "success")
+    try:
+        ref = db.reference("/sample_requests")
+        ref.push({
+            "name": firstname,
+            "email": email
+        })
+        flash("✅ Sample request submitted!", "success")
+    except Exception as e:
+        app.logger.error(f"Sample request failed: {e}")
+        flash("❌ Failed to submit sample request.", "error")
+
     return redirect(url_for("home"))
 
 
