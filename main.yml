@@ -23,6 +23,6 @@ jobs:
           python -m pip install --upgrade pip
           pip install -r requirements.txt # If you have a requirements.txt file
           python -m pip install pymysql
-          python -m pip install python-dotenv
+          python -m pip install dotenv
       - name: Run app.py
         run: python app.py
