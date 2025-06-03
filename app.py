@@ -28,7 +28,7 @@ def blog():
         from flask import current_app as app
 
         # Dynamically force path to this notebook environment
-        json_path = os.path.join(os.getcwd(), 'data', 'blogs.json')
+        json_path = os.path.join(os.getcwd(), 'data', 'blogs.json') 
         app.logger.info(f"📁 Reading from: {json_path}")
 
         with open(json_path, "r", encoding="utf-8") as f:
