@@ -4,9 +4,11 @@ import os
 import json
 from dotenv import load_dotenv
 load_dotenv()
+from waitress import serve
 
 app = Flask(__name__, static_folder='static', template_folder='templates')
 app.secret_key = os.getenv('SECRET_KEY', 'supersecretkey')
+serve(app, port=8080)
 
 def get_db_connection():
     return pymysql.connect(
@@ -141,6 +143,7 @@ def sample():
     app.logger.info(f"🎁 Sample requested: {firstname}, {email}")
     flash("✅ Sample request submitted!", "success")
     return redirect(url_for("home"))
+
 
 if __name__ == "__main__":
     app.run(debug=False)

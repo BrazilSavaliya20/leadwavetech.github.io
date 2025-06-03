@@ -24,5 +24,6 @@ jobs:
           pip install -r requirements.txt # If you have a requirements.txt file
           python -m pip install pymysql
           python -m pip install python-dotenv
+          pip install waitress
       - name: Run app.py
         run: python app.py
